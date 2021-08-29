@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <iostream>
+#include <string>
 
 #include <alpha2hex/alpha2hex.hpp>
 
@@ -10,9 +11,12 @@ int main(int argc, char *argv[]) {
         cerr << "invalid argument: try " << argv[0] << " 83\n\n";
         return EXIT_FAILURE;
     }
-    int alpha = -1;
-    if (sscanf_s(argv[1], "%i", &alpha) != 1) {
-        cerr << "invalid argument: " << argv[1] << "is not a valid alpha" << endl;
+
+    int alpha;
+    try {
+        alpha = std::stoi(argv[1]);
+    } catch(...) {
+        cerr << "invalid argument: " << argv[1] << " is not a valid alpha" << endl;
         return EXIT_FAILURE;
     }
     if (alpha < 0 || alpha > 100) {
