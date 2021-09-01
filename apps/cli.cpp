@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <iostream>
 #include <string>
 
@@ -12,17 +11,11 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    int alpha;
-    try {
-        alpha = std::stoi(argv[1]);
-    } catch(...) {
-        cerr << "invalid argument: " << argv[1] << " is not a valid alpha" << endl;
-        return EXIT_FAILURE;
-    }
-    if (alpha < 0 || alpha > 100) {
+    if (auto value = a2h::alpha2hex(argv[1]); value) {
+        std::cout << a2h::hexPrintable(*value);
+        return EXIT_SUCCESS;
+    } else {
         cerr << "invalid argument: input an alpha between 0 and 100" << endl;
         return EXIT_FAILURE;
     }
-    cout << a2h::alpha2hex(alpha);
-    return EXIT_SUCCESS;
 }
