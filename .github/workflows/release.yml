@@ -21,17 +21,18 @@ jobs:
 
     - name: Configure CMake
       run: cmake -S . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - uses: TheDoctor0/zip-release@0.6.0
     - name: Generate .zip
+    - uses: TheDoctor0/zip-release@0.6.0
       with: 
         filename: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
         directory: ${{github.workspace}}/build/apps
 
-    - uses: ncipollo/release-action@v1
     - name: Publish version
+    - uses: ncipollo/release-action@v1
       with:
         artifacts: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
         omitBody: true
