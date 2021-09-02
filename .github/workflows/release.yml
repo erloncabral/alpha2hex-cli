@@ -26,13 +26,13 @@ jobs:
 
     - name: Generate .zip
       uses: TheDoctor0/zip-release@0.6.0
-        with: 
-          filename: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
-          directory: ${{github.workspace}}/build/apps
+      with: 
+        filename: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
+        directory: ${{github.workspace}}/build/apps
 
     - name: Publish version
       uses: ncipollo/release-action@v1
-        with:
-          artifacts: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
-          omitBody: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        artifacts: alpha2hex-cli_${{RELEASE_VERSION}}_ubuntu.zip
+        omitBody: true
+        token: ${{ secrets.GITHUB_TOKEN }}
