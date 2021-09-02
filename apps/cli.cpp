@@ -1,21 +1,48 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include <alpha2hex/alpha2hex.hpp>
 
-using namespace std;
-
 int main(int argc, char *argv[]) {
-    if (argc <= 1) {
-        cerr << "invalid argument: try " << argv[0] << " 83\n\n";
-        return EXIT_FAILURE;
+    std::vector<std::string> args(argv + 1, argv + argc);
+
+    auto dumpInvalidArgument = [](const std::string &argument) {
+        std::cerr << "invalid argument " << argument << std::endl;
+    };
+
+    auto dumpHelp = []() {
+        std::cout << "Usage: alpha2hex [options]\n";
+        std::cout << "Options:\n\t";
+        std::cout << "[-a --alpha]\tPass alpha (0 to 100).\n\t";
+        std::cout << "[-x --hex]\tPass hex (00 to FF).\n\n";
+    };
+
+    for (auto i = args.begin(); i != args.end(); ++i) {
+        if (*i == "-h" || *i == "--help") {
+            dumpHelp();
+            return EXIT_SUCCESS;
+        } else if (*i == "-x" || *i == "--hex") {
+            const std::string hex = *++i;
+            if (auto value = a2h::hex2alpha(hex); value) {
+                std::cout << "Alpha: " << *value << std::endl;
+                return EXIT_SUCCESS;
+            } else {
+                dumpInvalidArgument(hex);
+                return EXIT_FAILURE;
+            }
+        } else if (*i == "-a" || *i == "--alpha") {
+            const std::string alpha = *++i;
+            if (auto value = a2h::alpha2hex(alpha); value) {
+                std::cout << "Hex: " << a2h::hexPrintable(*value) << std::endl;
+                return EXIT_SUCCESS;
+            } else {
+                dumpInvalidArgument(alpha);
+                return EXIT_FAILURE;
+            }
+        }
     }
 
-    if (auto value = a2h::alpha2hex(argv[1]); value) {
-        std::cout << a2h::hexPrintable(*value);
-        return EXIT_SUCCESS;
-    } else {
-        cerr << "invalid argument: input an alpha between 0 and 100" << endl;
-        return EXIT_FAILURE;
-    }
+    dumpHelp();
+    return EXIT_FAILURE;
 }
