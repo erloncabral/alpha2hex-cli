@@ -2,10 +2,8 @@ Convert Alpha to Hexdecimal to use on #AARRGGBB colors.
 
 Use:
 
-alpha_value between 0 .. 100
-
 ```bash
-./alpha2hex {alpha_value}
+./alpha2hex -a {alpha_value}
 ```
 
 The requirements are:
