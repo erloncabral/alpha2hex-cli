@@ -8,6 +8,6 @@ FetchContent_MakeAvailable(catch)
 add_executable(testlib testlib.cpp)
 
 target_compile_features(testlib PRIVATE cxx_std_17)
-target_link_libraries(testlib PRIVATE alpha2hexlib Catch2::Catch2)
+target_link_libraries(testlib PRIVATE libalpha2hex Catch2::Catch2)
 
 add_test(NAME alpha2hextest COMMAND testlib)
