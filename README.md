@@ -1,4 +1,4 @@
-Convert Alpha to Hexdecimal to use on #AARRGGBB colors.
+Convert Alpha to Hexadecimal to use on #AARRGGBB colors.
 
 Use:
 
