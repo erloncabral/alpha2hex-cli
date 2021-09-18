@@ -4,6 +4,11 @@ project(Alpha2Hex VERSION 1.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+configure_file (
+        "${PROJECT_SOURCE_DIR}/include/alpha2hex/version.h.in"
+        "${PROJECT_SOURCE_DIR}/include/alpha2hex/version.h"
+)
+
 include(FetchContent)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)

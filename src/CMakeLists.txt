@@ -1,4 +1,7 @@
-set(HEADER_LIST "${Alpha2Hex_SOURCE_DIR}/include/alpha2hex/alpha2hex.hpp")
+set(HEADER_LIST
+        "${Alpha2Hex_SOURCE_DIR}/include/alpha2hex/alpha2hex.h"
+        "${Alpha2Hex_SOURCE_DIR}/include/alpha2hex/version.h"
+        )
 
 add_library(libalpha2hex STATIC alpha2hex.cpp ${HEADER_LIST})
 

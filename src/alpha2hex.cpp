@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include "alpha2hex/alpha2hex.hpp"
+#include "alpha2hex/alpha2hex.h"
 
 namespace a2h {
     std::unique_ptr<int> alpha2hex(const std::string &alpha) {

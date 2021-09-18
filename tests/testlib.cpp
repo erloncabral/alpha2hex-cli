@@ -4,7 +4,7 @@
 #include <array>
 
 #include <catch2/catch.hpp>
-#include <alpha2hex/alpha2hex.hpp>
+#include <alpha2hex/alpha2hex.h>
 
 TEST_CASE("alpha decimal to hexadecimal", "[alpha2hex]") {
     const std::array<std::tuple<int, int>, 10> fixtures = {

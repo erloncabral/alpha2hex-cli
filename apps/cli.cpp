@@ -1,8 +1,10 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
-#include <alpha2hex/alpha2hex.hpp>
+#include <alpha2hex/alpha2hex.h>
+#include <alpha2hex/version.h>
 
 int main(int argc, char *argv[]) {
     std::vector<std::string> args(argv + 1, argv + argc);
@@ -15,12 +17,22 @@ int main(int argc, char *argv[]) {
         std::cout << "Usage: alpha2hex [options]\n";
         std::cout << "Options:\n\t";
         std::cout << "[-a --alpha]\tPass alpha (0 to 100).\n\t";
-        std::cout << "[-x --hex]\tPass hex (00 to FF).\n\n";
+        std::cout << "[-x --hex]\tPass hex (00 to FF).\n\t";
+        std::cout << "[-v --version]\tVersion information.\n\t";
+        std::cout << "[-h --help]\tList available commands.\n\n";
     };
 
     for (auto i = args.begin(); i != args.end(); ++i) {
         if (*i == "-h" || *i == "--help") {
             dumpHelp();
+            return EXIT_SUCCESS;
+        } else if (*i == "-v" || *i == "--version") {
+            std::ostringstream version;
+            version << "alpha2hex version ";
+            version << ALPHA2HEX_VERSION_MAJOR << ".";
+            version << ALPHA2HEX_VERSION_MINOR << ".";
+            version << ALPHA2HEX_VERSION_PATCH << std::endl;
+            std::cout << version.str();
             return EXIT_SUCCESS;
         } else if (*i == "-x" || *i == "--hex") {
             const std::string hex = *++i;
